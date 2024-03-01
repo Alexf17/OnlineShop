@@ -17,6 +17,9 @@ public class Review {
     private Client client;
     private Product product;
 
+    public Review() {
+    }
+
     public Review(UUID id, String content, Timestamp date, Rate rate, Client client, Product product) {
         this.id = id;
         this.content = content;

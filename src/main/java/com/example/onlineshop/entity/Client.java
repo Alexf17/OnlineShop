@@ -22,6 +22,9 @@ public class Client {
     private Timestamp dateOfBirth;
     private String cardNumber;
 
+    public Client() {
+    }
+
     public Client(UUID id, String firstName, String secondName, String address,
                   City city, PostCode postCode, Country country, String phone,
                   Timestamp dateOfBirth, String cardNumber) {

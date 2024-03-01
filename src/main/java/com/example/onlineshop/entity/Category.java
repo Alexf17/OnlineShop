@@ -12,6 +12,9 @@ public class Category {
     private String description;
     private long parentCategory;
 
+    public Category() {
+    }
+
     public Category(UUID id, String name, String description, long parentCategory) {
         this.id = id;
         this.name = name;

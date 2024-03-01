@@ -15,6 +15,9 @@ public class PromoCode {
     private int maxNumberOfUses;
     private int used;
 
+    public PromoCode() {
+    }
+
     public PromoCode(UUID id, double discount, LocalDate startDate, LocalDate expDate, int maxNumberOfUses, int used) {
         this.id = id;
         this.discount = discount;

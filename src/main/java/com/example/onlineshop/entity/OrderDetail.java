@@ -16,6 +16,9 @@ public class OrderDetail {
     private Order order;
     private List<Product> products;
 
+    public OrderDetail() {
+    }
+
     public OrderDetail(UUID id, int quantity, Order order, List<Product> products) {
         this.id = id;
         this.quantity = quantity;

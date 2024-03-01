@@ -16,6 +16,9 @@ public class Product {
     private Category category;
     private Supplier supplier;
 
+    public Product() {
+    }
+
     public Product(UUID id, String name, String description, int quantity,
                    double price, boolean isActive, Category category, Supplier supplier) {
         this.id = id;

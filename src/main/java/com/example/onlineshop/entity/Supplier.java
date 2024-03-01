@@ -18,6 +18,9 @@ public class Supplier {
     private Country country;
     private String phone;
 
+    public Supplier() {
+    }
+
     public Supplier(UUID id, String name, String address, City city,
                     PostCode postCode, Country country, String phone) {
         this.id = id;

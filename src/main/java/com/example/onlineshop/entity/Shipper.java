@@ -11,6 +11,9 @@ public class Shipper {
     private String name;
     private String phone;
 
+    public Shipper() {
+    }
+
     public Shipper(UUID id, String name, String phone) {
         this.id = id;
         this.name = name;

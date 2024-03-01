@@ -17,6 +17,9 @@ public class Order {
     private Client client;
     private Shipper shipper;
 
+    public Order() {
+    }
+
     public Order(UUID id, Timestamp createdAt, PromoCode usedPromoCode,
                  Status status, Client client, Shipper shipper) {
         this.id = id;
