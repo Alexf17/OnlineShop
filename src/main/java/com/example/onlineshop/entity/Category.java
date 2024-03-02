@@ -15,8 +15,7 @@ public class Category {
     public Category() {
     }
 
-    public Category(UUID id, String name, String description, long parentCategory) {
-        this.id = id;
+    public Category(String name, String description, long parentCategory) {
         this.name = name;
         this.description = description;
         this.parentCategory = parentCategory;

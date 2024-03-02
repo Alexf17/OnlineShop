@@ -14,8 +14,7 @@ public class Shipper {
     public Shipper() {
     }
 
-    public Shipper(UUID id, String name, String phone) {
-        this.id = id;
+    public Shipper(String name, String phone) {
         this.name = name;
         this.phone = phone;
     }

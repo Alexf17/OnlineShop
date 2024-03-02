@@ -21,9 +21,8 @@ public class Supplier {
     public Supplier() {
     }
 
-    public Supplier(UUID id, String name, String address, City city,
+    public Supplier(String name, String address, City city,
                     PostCode postCode, Country country, String phone) {
-        this.id = id;
         this.name = name;
         this.address = address;
         this.city = city;

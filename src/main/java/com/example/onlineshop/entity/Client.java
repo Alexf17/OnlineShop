@@ -25,10 +25,9 @@ public class Client {
     public Client() {
     }
 
-    public Client(UUID id, String firstName, String secondName, String address,
+    public Client(String firstName, String secondName, String address,
                   City city, PostCode postCode, Country country, String phone,
                   Timestamp dateOfBirth, String cardNumber) {
-        this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.address = address;

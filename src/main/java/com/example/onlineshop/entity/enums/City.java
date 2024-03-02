@@ -20,13 +20,20 @@ public enum City {
     WUPPERTAL("Wuppertal"),
     BIELEFELD("Bielefeld"),
     BONN("Bonn"),
-    MANNHEIM("Mannheim");
+//    MANNHEIM("Mannheim", com.example.onlineshop.entity.enums.Country.USA)
+    ;
 
+
+//    private final Enum Country;
     private final String cityName;
-
     City(String cityName) {
         this.cityName = cityName;
     }
+
+//    City(String cityName,Enum country) {
+//        this.cityName = cityName;
+//        this.Country = country;
+//    }
 
     public String getCityName() {
         return cityName;

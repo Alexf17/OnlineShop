@@ -19,9 +19,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(UUID id, String name, String description, int quantity,
+    public Product(String name, String description, int quantity,
                    double price, boolean isActive, Category category, Supplier supplier) {
-        this.id = id;
         this.name = name;
         this.description = description;
         this.quantity = quantity;

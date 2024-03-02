@@ -20,8 +20,7 @@ public class Review {
     public Review() {
     }
 
-    public Review(UUID id, String content, Timestamp date, Rate rate, Client client, Product product) {
-        this.id = id;
+    public Review(String content, Timestamp date, Rate rate, Client client, Product product) {
         this.content = content;
         this.date = date;
         this.rate = rate;

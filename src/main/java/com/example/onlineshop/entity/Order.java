@@ -20,9 +20,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(UUID id, Timestamp createdAt, PromoCode usedPromoCode,
+    public Order(Timestamp createdAt, PromoCode usedPromoCode,
                  Status status, Client client, Shipper shipper) {
-        this.id = id;
         this.createdAt = createdAt;
         this.usedPromoCode = usedPromoCode;
         this.status = status;
