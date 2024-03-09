@@ -1,5 +1,6 @@
 package com.example.onlineshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
+import java.util.Set;
 import java.util.UUID;
 @Entity
 @Getter
@@ -27,6 +29,10 @@ public class Category {
     private String description;
     @Column(name = "parent_category_id")
     private long parentCategory;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Product>products;
 
 
     @Override
