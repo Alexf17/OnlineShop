@@ -1,35 +1,39 @@
 package com.example.onlineshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
+import java.sql.Timestamp;
+import java.util.Set;
 import java.util.UUID;
+@Entity
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
+@Table(name = "categories")
 public class Category {
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID",strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @Column(name = "cat_id")
     private UUID id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "description")
     private String description;
+    @Column(name = "parent_category_id")
     private long parentCategory;
 
-    public Category() {
-    }
+    @JsonBackReference
+    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Product>products;
 
-    public Category(String name, String description, long parentCategory) {
-        this.name = name;
-        this.description = description;
-        this.parentCategory = parentCategory;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", parentCategory=" + parentCategory +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {

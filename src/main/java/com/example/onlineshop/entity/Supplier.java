@@ -3,46 +3,45 @@ package com.example.onlineshop.entity;
 import com.example.onlineshop.entity.enums.City;
 import com.example.onlineshop.entity.enums.Country;
 import com.example.onlineshop.entity.enums.PostCode;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
+import java.util.Set;
 import java.util.UUID;
+@Entity
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
+@Table(name = "suppliers")
 public class Supplier {
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID",strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @Column(name = "su_id")
     private UUID id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "address")
     private String address;
+    @Column(name = "city")
     private City city;
+    @Column(name = "postCode")
     private PostCode postCode;
+    @Column(name = "country")
     private Country country;
+    @Column(name = "phone")
     private String phone;
 
-    public Supplier() {
-    }
+    @JsonBackReference
+    @OneToMany(mappedBy = "supplier", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Product> products;
 
-    public Supplier(String name, String address, City city,
-                    PostCode postCode, Country country, String phone) {
-        this.name = name;
-        this.address = address;
-        this.city = city;
-        this.postCode = postCode;
-        this.country = country;
-        this.phone = phone;
-    }
-
-    @Override
-    public String toString() {
-        return "Supplier{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", city=" + city +
-                ", postCode=" + postCode +
-                ", country=" + country +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {

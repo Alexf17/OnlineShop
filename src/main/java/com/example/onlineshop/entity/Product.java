@@ -1,35 +1,55 @@
 package com.example.onlineshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
+import java.util.Set;
 import java.util.UUID;
+
+@Entity
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
+@Table(name = "products")
 public class Product {
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @Column(name = "p_id")
     private UUID id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "description")
     private String description;
+    @Column(name = "quantity")
     private int quantity;
+    @Column(name = "price")
     private double price;
+    @Column(name = "is_active")
     private boolean isActive;
+
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", referencedColumnName = "cat_id")
     private Category category;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier_id", referencedColumnName = "su_id")
     private Supplier supplier;
 
-    public Product() {
-    }
+    @JsonBackReference
+    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<OrderDetail> orderDetails;
 
-    public Product(String name, String description, int quantity,
-                   double price, boolean isActive, Category category, Supplier supplier) {
-        this.name = name;
-        this.description = description;
-        this.quantity = quantity;
-        this.price = price;
-        this.isActive = isActive;
-        this.category = category;
-        this.supplier = supplier;
-    }
-
+    @JsonBackReference
+    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Review> productReviews;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,15 +75,4 @@ public class Product {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                ", isActive=" + isActive +
-                '}';
-    }
 }
