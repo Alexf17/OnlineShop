@@ -1,42 +1,42 @@
 package com.example.onlineshop.entity;
 
 import com.example.onlineshop.entity.enums.Rate;
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
 import java.util.UUID;
-
+@Entity
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
+@Table(name = "reviews")
 public class Review {
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID",strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @Column(name = "r_id")
     private UUID id;
+    @Column(name = "content")
     private String content;
+    @Column(name = "created_at")
     private Timestamp date;
+    @Column(name = "rate")
     private Rate rate;
-    private Client client;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "u_id")
+    private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", referencedColumnName = "p_id")
     private Product product;
 
-    public Review() {
-    }
-
-    public Review(String content, Timestamp date, Rate rate, Client client, Product product) {
-        this.content = content;
-        this.date = date;
-        this.rate = rate;
-        this.client = client;
-        this.product = product;
-    }
-
-    @Override
-    public String toString() {
-        return "Review{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", date=" + date +
-                ", rate=" + rate +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {

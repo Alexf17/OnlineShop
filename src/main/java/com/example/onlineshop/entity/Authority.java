@@ -1,6 +1,5 @@
 package com.example.onlineshop.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 @Entity
@@ -15,40 +15,33 @@ import java.util.UUID;
 @Setter
 @ToString
 @NoArgsConstructor
-@Table(name = "shippers")
-public class Shipper {
+@Table(name = "authorities")
+public class Authority {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID",strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
-    @Column(name = "sh_id")
+    @Column(name = "auth_id")
     private UUID id;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "phone")
-    private String phone;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "shipper", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Order> orders;
-
+    @Column(name = "authority_name")
+    private String authority;
+    @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
+    private Set<Role> roles;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Shipper shipper = (Shipper) o;
+        Authority authority1 = (Authority) o;
 
-        if (!id.equals(shipper.id)) return false;
-        if (!name.equals(shipper.name)) return false;
-        return phone.equals(shipper.phone);
+        if (!Objects.equals(id, authority1.id)) return false;
+        return Objects.equals(authority, authority1.authority);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + phone.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (authority != null ? authority.hashCode() : 0);
         return result;
     }
 }
