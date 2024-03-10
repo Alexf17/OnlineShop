@@ -22,7 +22,7 @@ public class UserInfo {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
-    @Column(name = "id")
+    @Column(name = "ui_id")
     private UUID id;
     @Column(name = "user_name")
     private String username;
@@ -43,11 +43,9 @@ public class UserInfo {
     @Column(name = "date_of_birth")
     private Timestamp dateOfBirth;
 
-    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Role> roles;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private User user;
 
     @Override
     public boolean equals(Object o) {
