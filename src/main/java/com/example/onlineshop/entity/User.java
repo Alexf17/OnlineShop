@@ -31,6 +31,7 @@ public class User {
     private Timestamp createdAt;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_info_id", referencedColumnName = "ui_id")
     private UserInfo userInfo;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)

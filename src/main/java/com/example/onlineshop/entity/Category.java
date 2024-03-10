@@ -31,7 +31,7 @@ public class Category {
     private long parentCategory;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Product>products;
 
 
