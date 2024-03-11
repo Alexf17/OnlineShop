@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.math.BigDecimal;
 import java.util.Set;
 import java.util.UUID;
 
@@ -30,7 +31,7 @@ public class Product {
     @Column(name = "quantity")
     private int quantity;
     @Column(name = "price")
-    private double price;
+    private BigDecimal price;
     @Column(name = "is_active")
     private boolean isActive;
 
