@@ -8,6 +8,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -30,7 +32,7 @@ public class Product {
     @Column(name = "quantity")
     private int quantity;
     @Column(name = "price")
-    private double price;
+    private BigDecimal price;
     @Column(name = "is_active")
     private boolean isActive;
 
@@ -50,6 +52,7 @@ public class Product {
     @JsonBackReference
     @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Review> productReviews;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,22 +60,16 @@ public class Product {
 
         Product product = (Product) o;
 
-        if (Double.compare(price, product.price) != 0) return false;
-        if (!id.equals(product.id)) return false;
-        if (!name.equals(product.name)) return false;
-        return description.equals(product.description);
+        if (quantity != product.quantity) return false;
+        if (!Objects.equals(id, product.id)) return false;
+        return Objects.equals(name, product.name);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + description.hashCode();
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + quantity;
         return result;
     }
-
 }
