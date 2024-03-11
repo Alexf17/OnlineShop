@@ -10,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
 import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -17,15 +18,19 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "reviews")
 public class Review {
+
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
     @Column(name = "r_id")
     private UUID id;
+
     @Column(name = "content")
     private String content;
+
     @Column(name = "created_at")
     private Timestamp date;
+
     @Column(name = "rate")
     private Rate rate;
 

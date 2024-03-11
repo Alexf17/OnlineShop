@@ -20,19 +20,25 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "products")
 public class Product {
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
     @Column(name = "p_id")
     private UUID id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "quantity")
     private int quantity;
+
     @Column(name = "price")
     private BigDecimal price;
+
     @Column(name = "is_active")
     private boolean isActive;
 

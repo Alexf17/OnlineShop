@@ -12,6 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
 import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -19,11 +20,13 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "orders_details")
 public class OrderDetail {
+
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
     @Column(name = "od_id")
     private UUID id;
+
     @Column(name = "quantity")
     private int quantity;
 

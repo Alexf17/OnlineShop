@@ -10,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -17,15 +18,17 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "authorities")
 public class Authority {
+
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
     @Column(name = "auth_id")
     private UUID id;
+
     @Column(name = "authority_name")
     private String authority;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Role> roles;
 
     @Override
