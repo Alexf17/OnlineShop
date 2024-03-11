@@ -11,6 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -18,21 +19,25 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "categories")
 public class Category {
+
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
     @Column(name = "cat_id")
     private UUID id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "parent_category_id")
     private long parentCategory;
 
     @JsonBackReference
     @OneToMany(mappedBy = "category", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Product>products;
+    private Set<Product> products;
 
 
     @Override

@@ -16,17 +16,22 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
     @Column(name = "u_id")
     private UUID id;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "second_name")
     private String secondName;
+
     @Column(name = "country")
     private Country country;
+
     @Column(name = "created_at")
     private Timestamp createdAt;
 

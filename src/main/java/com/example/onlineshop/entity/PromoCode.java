@@ -11,6 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -18,19 +19,25 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "promo_codes")
 public class PromoCode {
+
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
     @Column(name = "pc_id")
     private UUID id;
+
     @Column(name = "discount")
     private double discount;
+
     @Column(name = "start_date")
     private LocalDate startDate;
+
     @Column(name = "exp_date")
     private LocalDate expDate;
+
     @Column(name = "max_number_of_uses")
     private int maxNumberOfUses;
+
     @Column(name = "used")
     private int used;
 

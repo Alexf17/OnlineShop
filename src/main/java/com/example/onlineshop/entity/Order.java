@@ -12,6 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -19,13 +20,16 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "orders")
 public class Order {
+
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
     @Column(name = "o_id")
     private UUID id;
+
     @Column(name = "created_at")
     private Timestamp createdAt;
+
     @Column(name = "status")
     private Status status;
 
@@ -44,7 +48,6 @@ public class Order {
     @JsonBackReference
     @OneToMany(mappedBy = "order", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<OrderDetail> orderDetails;
-
 
 
     @Override

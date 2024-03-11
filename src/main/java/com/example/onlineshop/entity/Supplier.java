@@ -13,6 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Set;
 import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -20,21 +21,28 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "suppliers")
 public class Supplier {
+
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
     @Column(name = "su_id")
     private UUID id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "address")
     private String address;
+
     @Column(name = "city")
     private City city;
+
     @Column(name = "postCode")
     private PostCode postCode;
+
     @Column(name = "country")
     private Country country;
+
     @Column(name = "phone")
     private String phone;
 

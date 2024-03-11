@@ -24,27 +24,36 @@ public class UserInfo {
     @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
     @Column(name = "ui_id")
     private UUID id;
+
     @Column(name = "user_name")
     private String username;
+
     @Column(name = "password")
     private String password;
+
     @Column(name = "address")
     private String address;
+
     @Column(name = "city")
     private City city;
+
     @Column(name = "postcode")
     private PostCode postCode;
+
     @Column(name = "card_number")
     private String cardNumber;
+
     @Column(name = "phone")
     private String phone;
+
     @Column(name = "email")
     private String email;
+
     @Column(name = "date_of_birth")
     private Timestamp dateOfBirth;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-   //  @JoinTable(name = "users_roles",
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //  @JoinTable(name = "users_roles",
     //       joinColumns = @JoinColumn(name = "user_info_id"),
     //        inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;

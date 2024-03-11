@@ -17,6 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "roles")
 public class Role {
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
