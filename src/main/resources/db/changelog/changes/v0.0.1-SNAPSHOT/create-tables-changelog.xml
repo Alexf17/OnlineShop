@@ -121,7 +121,7 @@
             <column name="content" type="varchar(60)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="date" type="varchar(30)">
+            <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
             <column name="rate" type="varchar(30)">
@@ -322,39 +322,28 @@
         </createTable>
     </changeSet>
 
-<!--        <changeSet author="o.chilibiiskyi" id="create_authorities_roles_table">-->
-<!--            <preConditions onFail="CONTINUE" onFailMessage="Table authorities_roles already exists">-->
-<!--                <not>-->
-<!--                    <tableExists tableName="authorities_roles"/>-->
-<!--                </not>-->
-<!--            </preConditions>-->
-<!--            <createTable tableName="authorities_roles">-->
-<!--                <column name="role_id" type="uuid">-->
-<!--                    <constraints primaryKey="true" nullable="false"/>-->
-<!--                </column>-->
-<!--                <column name="auth_id" type="uuid">-->
-<!--                    <constraints primaryKey="true" nullable="false"/>-->
-<!--                </column>-->
-<!--                <foreignKeyConstraint baseColumnNames="role_id" baseTableName="authorities_roles"-->
-<!--                                      constraintName="fk_authorities_roles_roles"-->
-<!--                                      referencedColumnNames="role_id" referencedTableName="roles"/>-->
-<!--                <foreignKeyConstraint baseColumnNames="auth_id" baseTableName="authorities_roles"-->
-<!--                                      constraintName="fk_authorities_roles_authorities"-->
-<!--                                      referencedColumnNames="auth_id" referencedTableName="authorities"/>-->
-<!--            </createTable>-->
+    <changeSet author="o.chilibiiskyi" id="create_authorities_roles_table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table authorities_roles already exists">
+            <not>
+                <tableExists tableName="authorities_roles"/>
+            </not>
+        </preConditions>
+        <createTable tableName="authorities_roles">
+            <column name="role_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="auth_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="authorities_roles"
+                                 constraintName="authorities_roles_roles"
+                                 referencedColumnNames="role_id" referencedTableName="roles"/>
+        <addForeignKeyConstraint baseColumnNames="auth_id" baseTableName="authorities_roles"
+                                 constraintName="authorities_roles_authorities"
+                                 referencedColumnNames="auth_id" referencedTableName="authorities"/>
 
-<!--            <createTable tableName="authorities_roles">-->
-<!--                <column name="role_id" type="uuid">-->
-<!--                    <constraints primaryKey="true" nullable="false"/>-->
-<!--                    <constraints foreignKeyName="fk_authorities_roles_roles" referenceTable="roles" referenceColumn="role_id" nullable="false"/>-->
-<!--                </column>-->
-<!--                <column name="auth_id" type="uuid">-->
-<!--                    <constraints primaryKey="true" nullable="false"/>-->
-<!--                    <constraints foreignKeyName="fk_authorities_roles_authorities" referenceTable="authorities" referenceColumn="auth_id" nullable="false"/>-->
-<!--                </column>-->
-<!--            </createTable>-->
-<!--        </changeSet>-->
-
+    </changeSet>
 
 
 </databaseChangeLog>

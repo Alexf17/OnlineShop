@@ -1,5 +1,6 @@
 package com.example.onlineshop.entity;
 
+import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,7 +9,6 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -23,7 +23,7 @@ public class Category {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "cat_id")
     private UUID id;
 

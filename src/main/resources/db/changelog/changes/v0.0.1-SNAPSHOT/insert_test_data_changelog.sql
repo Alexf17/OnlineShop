@@ -134,7 +134,7 @@ VALUES ('123e4567-e89b-12d3-a456-426655440000', 'John', 'Doe', 'USA', '2024-03-1
        ('123e4567-e89b-12d3-a456-426655448888', 'David', 'Wilson', 'Germany', '2024-03-06',
         '123e4567-e89b-12d3-a456-426655449999');
 
-INSERT INTO reviews (r_id, content, date, rate, user_id, product_id)
+INSERT INTO reviews (r_id, content, created_at, rate, user_id, product_id)
 VALUES (UUID(), 'Great product, highly recommend it!', '2024-03-10 12:00:00', 5,
         (SELECT u_id FROM users WHERE first_name = 'John'),
         (SELECT p_id FROM products WHERE name = 'XBOX SERIES X 1TB')),
@@ -179,3 +179,13 @@ VALUES (UUID(), 2, (SELECT o_id FROM orders WHERE status = 'SUCCESSFUL'),
         (SELECT p_id FROM products WHERE name = 'GPS Navigation for Car')),
        (UUID(), 2, (SELECT o_id FROM orders WHERE status = 'SHIPPED'),
         (SELECT p_id FROM products WHERE name = 'Lenovo IdeaPad 1 Student Laptop'));
+
+INSERT INTO authorities_roles (role_id, auth_id)
+values ((select role_id from roles where role_name = 'Administrator'),
+        (select auth_id from authorities where authority_name = 'CREATE_ORDER')),
+       ((select role_id from roles where role_name = 'Manager'),
+        (select auth_id from authorities where authority_name = 'CREATE_PRODUCT')),
+       ((select role_id from roles where role_name = 'Manager'),
+        (select auth_id from authorities where authority_name = 'WRITE_REVIEW')),
+       ((select role_id from roles where role_name = 'Client'),
+        (select auth_id from authorities where authority_name = 'MANAGE_INVENTORY'));
