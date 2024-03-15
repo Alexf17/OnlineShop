@@ -21,7 +21,7 @@ public class Role {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
-    @Column(name = "id")
+    @Column(name = "role_id")
     private UUID id;
 
     @Column(name = "role_name")

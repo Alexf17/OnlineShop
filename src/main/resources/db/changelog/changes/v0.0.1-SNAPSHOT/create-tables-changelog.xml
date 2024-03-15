@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
-        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet author="o.chilibiiskyi" id="create_promo_codes_table">
         <preConditions onFail="CONTINUE" onFailMessage="Table promo_codes already exists">
@@ -15,6 +14,9 @@
         <createTable tableName="promo_codes">
             <column name="pc_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
             </column>
             <column name="discount" type="double">
                 <constraints nullable="false"/>
@@ -50,7 +52,7 @@
             <column name="description" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="parent_category_id" type="String">
+            <column name="parent_category_id" type="uuid">
                 <constraints nullable="true"/>
             </column>
         </createTable>
@@ -113,10 +115,10 @@
             </not>
         </preConditions>
         <createTable tableName="reviews">
-            <column name="r_id" type="varchar(50)">
+            <column name="r_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="content" type="text">
+            <column name="content" type="varchar(60)">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="date" type="varchar(30)">
@@ -125,97 +127,11 @@
             <column name="rate" type="varchar(30)">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_id" type="varchar(30)">
+            <column name="user_id" type="uuid">
                 <constraints nullable="false"/>
-            </column>
-            <column name="product_id" type="varchar(30)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet author="o.chilibiiskyi" id="create_orders_detail_table">
-        <preConditions onFail="CONTINUE" onFailMessage="Table orders_detail already exists">
-            <not>
-                <tableExists tableName="orders_detail"/>
-            </not>
-        </preConditions>
-        <createTable tableName="orders_detail">
-            <column name="od_id" type="uuid">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="quantity" type="integer">
-                <constraints nullable="false"/>
-            </column>
-            <column name="order_id" type="uuid">
-                <constraints foreignKeyName="order_details_order_id" references="orders(o_id)"
-                             nullable="false"/>
             </column>
             <column name="product_id" type="uuid">
-                <constraints foreignKeyName="order_details_product_id" references="products(p_id)"
-                             nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet author="o.chilibiiskyi" id="create_orders_table">
-        <preConditions onFail="CONTINUE" onFailMessage="Table orders already exists">
-            <not>
-                <tableExists tableName="orders"/>
-            </not>
-        </preConditions>
-        <createTable tableName="orders">
-            <column name="o_id" type="uuid">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
-            </column>
-            <column name="status" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="promo_code_id" type="uuid">
-                <constraints foreignKeyName="orders_promo_code_id" references="promo_codes(pc_id)" nullable="true"/>
-            </column>
-            <column name="user_id" type="uuid">
-                <constraints foreignKeyName="orders_user_id" references="users(u_id)" nullable="false"/>
-            </column>
-            <column name="shipper_id" type="uuid">
-                <constraints foreignKeyName="orders_shipper_id" references="shippers(sh_id)" nullable="true"/>
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet author="o.chilibiiskyi" id="create_products_table">
-        <preConditions onFail="CONTINUE" onFailMessage="Table products already exists">
-            <not>
-                <tableExists tableName="products"/>
-            </not>
-        </preConditions>
-        <createTable tableName="products">
-            <column name="p_id" type="uuid">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="description" type="text">
-                <constraints nullable="true"/>
-            </column>
-            <column name="quantity" type="integer">
-                <constraints nullable="false"/>
-            </column>
-            <column name="price" type="numeric(19,4)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="is_active" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="category_id" type="uuid">
-                <constraints foreignKeyName="products_category_id" references="categories(cat_id)" nullable="true"/>
-            </column>
-            <column name="supplier_id" type="uuid">
-                <constraints foreignKeyName="products_supplier_id" references="suppliers(su_id)" nullable="true"/>
             </column>
         </createTable>
     </changeSet>
@@ -227,7 +143,7 @@
             </not>
         </preConditions>
         <createTable tableName="roles">
-            <column name="id" type="uuid">
+            <column name="role_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="role_name" type="varchar(255)">
@@ -319,4 +235,126 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet author="o.chilibiiskyi" id="create_orders_table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table orders already exists">
+            <not>
+                <tableExists tableName="orders"/>
+            </not>
+        </preConditions>
+        <createTable tableName="orders">
+            <column name="o_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="promo_code_id" type="uuid">
+                <constraints foreignKeyName="orders_promo_code_id" references="promo_codes(pc_id)" nullable="true"/>
+            </column>
+            <column name="user_id" type="uuid">
+                <constraints foreignKeyName="orders_user_id" references="users(u_id)" nullable="false"/>
+            </column>
+            <column name="shipper_id" type="uuid">
+                <constraints foreignKeyName="orders_shipper_id" references="shippers(sh_id)" nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="o.chilibiiskyi" id="create_products_table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table products already exists">
+            <not>
+                <tableExists tableName="products"/>
+            </not>
+        </preConditions>
+        <createTable tableName="products">
+            <column name="p_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="true"/>
+            </column>
+            <column name="quantity" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="numeric(19,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="uuid">
+                <constraints foreignKeyName="products_category_id" references="categories(cat_id)" nullable="true"/>
+            </column>
+            <column name="supplier_id" type="uuid">
+                <constraints foreignKeyName="products_supplier_id" references="suppliers(su_id)" nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="o.chilibiiskyi" id="create_orders_detail_table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table orders_detail already exists">
+            <not>
+                <tableExists tableName="orders_detail"/>
+            </not>
+        </preConditions>
+        <createTable tableName="orders_detail">
+            <column name="od_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="quantity" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="uuid">
+                <constraints foreignKeyName="order_details_order_id" references="orders(o_id)"
+                             nullable="false"/>
+            </column>
+            <column name="product_id" type="uuid">
+                <constraints foreignKeyName="order_details_product_id" references="products(p_id)"
+                             nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+<!--        <changeSet author="o.chilibiiskyi" id="create_authorities_roles_table">-->
+<!--            <preConditions onFail="CONTINUE" onFailMessage="Table authorities_roles already exists">-->
+<!--                <not>-->
+<!--                    <tableExists tableName="authorities_roles"/>-->
+<!--                </not>-->
+<!--            </preConditions>-->
+<!--            <createTable tableName="authorities_roles">-->
+<!--                <column name="role_id" type="uuid">-->
+<!--                    <constraints primaryKey="true" nullable="false"/>-->
+<!--                </column>-->
+<!--                <column name="auth_id" type="uuid">-->
+<!--                    <constraints primaryKey="true" nullable="false"/>-->
+<!--                </column>-->
+<!--                <foreignKeyConstraint baseColumnNames="role_id" baseTableName="authorities_roles"-->
+<!--                                      constraintName="fk_authorities_roles_roles"-->
+<!--                                      referencedColumnNames="role_id" referencedTableName="roles"/>-->
+<!--                <foreignKeyConstraint baseColumnNames="auth_id" baseTableName="authorities_roles"-->
+<!--                                      constraintName="fk_authorities_roles_authorities"-->
+<!--                                      referencedColumnNames="auth_id" referencedTableName="authorities"/>-->
+<!--            </createTable>-->
+
+<!--            <createTable tableName="authorities_roles">-->
+<!--                <column name="role_id" type="uuid">-->
+<!--                    <constraints primaryKey="true" nullable="false"/>-->
+<!--                    <constraints foreignKeyName="fk_authorities_roles_roles" referenceTable="roles" referenceColumn="role_id" nullable="false"/>-->
+<!--                </column>-->
+<!--                <column name="auth_id" type="uuid">-->
+<!--                    <constraints primaryKey="true" nullable="false"/>-->
+<!--                    <constraints foreignKeyName="fk_authorities_roles_authorities" referenceTable="authorities" referenceColumn="auth_id" nullable="false"/>-->
+<!--                </column>-->
+<!--            </createTable>-->
+<!--        </changeSet>-->
+
+
+
 </databaseChangeLog>

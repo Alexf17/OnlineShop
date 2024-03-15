@@ -26,6 +26,9 @@ public class PromoCode {
     @Column(name = "pc_id")
     private UUID id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "discount")
     private double discount;
 
