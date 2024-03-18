@@ -1,14 +1,13 @@
 package com.example.onlineshop.entity;
 
+import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
-import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -22,7 +21,7 @@ public class Category {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "cat_id")
     private UUID id;
 
@@ -33,7 +32,7 @@ public class Category {
     private String description;
 
     @Column(name = "parent_category_id")
-    private long parentCategory;
+    private UUID parentCategory;
 
     @JsonBackReference
     @OneToMany(mappedBy = "category", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -47,18 +46,16 @@ public class Category {
 
         Category category = (Category) o;
 
-        if (parentCategory != category.parentCategory) return false;
-        if (!id.equals(category.id)) return false;
-        if (!name.equals(category.name)) return false;
-        return description.equals(category.description);
+        if (!Objects.equals(id, category.id)) return false;
+        if (!Objects.equals(name, category.name)) return false;
+        return Objects.equals(parentCategory, category.parentCategory);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + (int) (parentCategory ^ (parentCategory >>> 32));
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (parentCategory != null ? parentCategory.hashCode() : 0);
         return result;
     }
 }

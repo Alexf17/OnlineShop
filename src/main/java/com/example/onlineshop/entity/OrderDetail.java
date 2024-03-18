@@ -1,16 +1,13 @@
 package com.example.onlineshop.entity;
 
-import com.example.onlineshop.entity.enums.Status;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,12 +15,12 @@ import java.util.UUID;
 @Setter
 @ToString
 @NoArgsConstructor
-@Table(name = "orders_details")
+@Table(name = "orders_detail")
 public class OrderDetail {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "od_id")
     private UUID id;
 

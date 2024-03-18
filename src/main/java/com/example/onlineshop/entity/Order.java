@@ -1,15 +1,18 @@
 package com.example.onlineshop.entity;
 
 import com.example.onlineshop.entity.enums.Status;
+import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
+
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -23,7 +26,7 @@ public class Order {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "o_id")
     private UUID id;
 
@@ -31,6 +34,7 @@ public class Order {
     private Timestamp createdAt;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -49,7 +53,6 @@ public class Order {
     @OneToMany(mappedBy = "order", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<OrderDetail> orderDetails;
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,16 +60,16 @@ public class Order {
 
         Order order = (Order) o;
 
-        if (!id.equals(order.id)) return false;
-        if (!createdAt.equals(order.createdAt)) return false;
-        return status == order.status;
+        if (!Objects.equals(id, order.id)) return false;
+        if (!Objects.equals(createdAt, order.createdAt)) return false;
+        return Objects.equals(user, order.user);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + createdAt.hashCode();
-        result = 31 * result + status.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
         return result;
     }
 }

@@ -2,6 +2,7 @@ package com.example.onlineshop.entity;
 
 import com.example.onlineshop.entity.enums.City;
 import com.example.onlineshop.entity.enums.PostCode;
+import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -21,7 +22,7 @@ public class UserInfo {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "ui_id")
     private UUID id;
 
@@ -35,9 +36,11 @@ public class UserInfo {
     private String address;
 
     @Column(name = "city")
+    @Enumerated(EnumType.STRING)
     private City city;
 
     @Column(name = "postcode")
+    @Enumerated(EnumType.STRING)
     private PostCode postCode;
 
     @Column(name = "card_number")

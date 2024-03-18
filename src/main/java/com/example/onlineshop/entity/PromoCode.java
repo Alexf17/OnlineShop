@@ -1,11 +1,10 @@
 package com.example.onlineshop.entity;
 
+import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
@@ -22,9 +21,12 @@ public class PromoCode {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "pc_id")
     private UUID id;
+
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "discount")
     private double discount;

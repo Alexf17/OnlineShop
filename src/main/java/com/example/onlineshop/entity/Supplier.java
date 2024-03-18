@@ -3,12 +3,11 @@ package com.example.onlineshop.entity;
 import com.example.onlineshop.entity.enums.City;
 import com.example.onlineshop.entity.enums.Country;
 import com.example.onlineshop.entity.enums.PostCode;
+import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Set;
@@ -24,7 +23,7 @@ public class Supplier {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "com.example.onlineshop.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "su_id")
     private UUID id;
 
@@ -35,12 +34,15 @@ public class Supplier {
     private String address;
 
     @Column(name = "city")
+    @Enumerated(EnumType.STRING)
     private City city;
 
     @Column(name = "postCode")
+    @Enumerated(EnumType.STRING)
     private PostCode postCode;
 
     @Column(name = "country")
+    @Enumerated(EnumType.STRING)
     private Country country;
 
     @Column(name = "phone")
