@@ -36,9 +36,11 @@ public class UserInfo {
     private String address;
 
     @Column(name = "city")
+    @Enumerated(EnumType.STRING)
     private City city;
 
     @Column(name = "postcode")
+    @Enumerated(EnumType.STRING)
     private PostCode postCode;
 
     @Column(name = "card_number")

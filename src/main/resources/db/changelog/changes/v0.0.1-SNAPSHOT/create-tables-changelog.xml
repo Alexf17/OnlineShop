@@ -337,7 +337,7 @@
             </column>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="authorities_roles"
-                                 constraintName="authorities_roles_roles"
+                                 constraintName="roles_authorities_roles"
                                  referencedColumnNames="role_id" referencedTableName="roles"/>
         <addForeignKeyConstraint baseColumnNames="auth_id" baseTableName="authorities_roles"
                                  constraintName="authorities_roles_authorities"
@@ -345,5 +345,27 @@
 
     </changeSet>
 
+    <changeSet author="o.chilibiiskyi" id="create_roles_users_info_table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table authorities_roles already exists">
+            <not>
+                <tableExists tableName="roles_users_info"/>
+            </not>
+        </preConditions>
+        <createTable tableName="roles_users_info">
+            <column name="role_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ui_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="roles_users_info"
+                                 constraintName="roles_users_info_roles"
+                                 referencedColumnNames="role_id" referencedTableName="roles"/>
+        <addForeignKeyConstraint baseColumnNames="ui_id" baseTableName="roles_users_info"
+                                 constraintName="users_info_roles_users_info"
+                                 referencedColumnNames="ui_id" referencedTableName="user_info"/>
+
+    </changeSet>
 
 </databaseChangeLog>

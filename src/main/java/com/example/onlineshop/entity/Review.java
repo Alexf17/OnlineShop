@@ -3,10 +3,8 @@ package com.example.onlineshop.entity;
 import com.example.onlineshop.entity.enums.Rate;
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
@@ -33,6 +31,7 @@ public class Review {
     private Timestamp date;
 
     @Column(name = "rate")
+    @Enumerated(EnumType.STRING)
     private Rate rate;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -188,4 +188,18 @@ values ((select role_id from roles where role_name = 'Administrator'),
        ((select role_id from roles where role_name = 'Manager'),
         (select auth_id from authorities where authority_name = 'WRITE_REVIEW')),
        ((select role_id from roles where role_name = 'Client'),
-        (select auth_id from authorities where authority_name = 'MANAGE_INVENTORY'));
+        (select auth_id from authorities where authority_name = 'MANAGE_INVENTORY')),
+       ((select role_id from roles where role_name = 'Client'),
+        (select auth_id from authorities where authority_name = 'VIEW_ORDERS'));
+
+INSERT INTO roles_users_info (role_id, ui_id)
+values ((select role_id from roles where role_name = 'Administrator'),
+        (select ui_id from user_info where user_name = 'john_doe')),
+       ((select role_id from roles where role_name = 'Manager'),
+        (select ui_id from user_info where user_name = 'jane_smith')),
+       ((select role_id from roles where role_name = 'Client'),
+        (select ui_id from user_info where user_name = 'mike_jackson')),
+       ((select role_id from roles where role_name = 'Client'),
+        (select ui_id from user_info where user_name = 'emily_wang')),
+       ((select role_id from roles where role_name = 'Client'),
+        (select ui_id from user_info where user_name = 'alex_jones'));

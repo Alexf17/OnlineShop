@@ -6,10 +6,8 @@ import com.example.onlineshop.entity.enums.PostCode;
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Set;
@@ -36,12 +34,15 @@ public class Supplier {
     private String address;
 
     @Column(name = "city")
+    @Enumerated(EnumType.STRING)
     private City city;
 
     @Column(name = "postCode")
+    @Enumerated(EnumType.STRING)
     private PostCode postCode;
 
     @Column(name = "country")
+    @Enumerated(EnumType.STRING)
     private Country country;
 
     @Column(name = "phone")

@@ -1,17 +1,13 @@
 package com.example.onlineshop.entity;
 
-import com.example.onlineshop.entity.enums.Status;
+
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity

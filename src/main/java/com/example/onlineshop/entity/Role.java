@@ -2,10 +2,8 @@ package com.example.onlineshop.entity;
 
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Set;

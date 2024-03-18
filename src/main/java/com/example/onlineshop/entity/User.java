@@ -31,6 +31,7 @@ public class User {
     private String secondName;
 
     @Column(name = "country")
+    @Enumerated(EnumType.STRING)
     private Country country;
 
     @Column(name = "created_at")
