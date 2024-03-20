@@ -3,6 +3,7 @@ package com.example.onlineshop.entity.enums;
 public enum PostCode {
 
     BERLIN("10115"),
+    CHICAGO("60601"),
     HAMBURG("20095"),
     MUNICH("80331"),
     COLOGNE("50667"),
@@ -44,7 +45,8 @@ public enum PostCode {
     POLTAVA("36000"),
     NEW_YORK("10001"),
     LOS_ANGELES("90001"),
-    CHICAGO("60601"),
+    HD34U("60601"),
+    HD87R("60601"),
     HOUSTON("77001"),
     PHILADELPHIA("19101"),
     PHOENIX("85001"),

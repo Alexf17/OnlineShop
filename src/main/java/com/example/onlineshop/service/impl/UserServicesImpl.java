@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -18,6 +19,13 @@ public class UserServicesImpl implements UserServices {
     @Override
     @Transactional
     public User showUser(String id) {
+//        Optional<User> optionalUser = userRepository.findById(id);
+//        if(optionalUser.isPresent()){
+//           return optionalUser.get()
+//            ;
+//        } else {
+//             throw new UserNotExistExp(ErrorMessage.USER_NOT_EXIST);
+//        }
         return userRepository
                 .findById(UUID.fromString(id))
                 .orElseThrow(()->new UserNotExistExp(ErrorMessage.USER_NOT_EXIST));

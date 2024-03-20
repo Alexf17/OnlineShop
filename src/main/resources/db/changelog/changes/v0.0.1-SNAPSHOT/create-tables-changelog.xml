@@ -12,7 +12,7 @@
             </not>
         </preConditions>
         <createTable tableName="promo_codes">
-            <column name="pc_id" type="uuid">
+            <column name="pc_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
@@ -43,7 +43,7 @@
             </not>
         </preConditions>
         <createTable tableName="categories">
-            <column name="cat_id" type="uuid">
+            <column name="cat_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
@@ -52,7 +52,7 @@
             <column name="description" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="parent_category_id" type="uuid">
+            <column name="parent_category_id" type="binary(16)">
                 <constraints nullable="true"/>
             </column>
         </createTable>
@@ -65,7 +65,7 @@
             </not>
         </preConditions>
         <createTable tableName="suppliers">
-            <column name="su_id" type="uuid">
+            <column name="su_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(30)">
@@ -96,7 +96,7 @@
             </not>
         </preConditions>
         <createTable tableName="shippers">
-            <column name="sh_id" type="varchar(50)">
+            <column name="sh_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(30)">
@@ -115,7 +115,7 @@
             </not>
         </preConditions>
         <createTable tableName="reviews">
-            <column name="r_id" type="uuid">
+            <column name="r_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="content" type="varchar(60)">
@@ -127,10 +127,10 @@
             <column name="rate" type="varchar(30)">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_id" type="uuid">
+            <column name="user_id" type="binary(16)">
                 <constraints nullable="false"/>
             </column>
-            <column name="product_id" type="uuid">
+            <column name="product_id" type="binary(16)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -143,7 +143,7 @@
             </not>
         </preConditions>
         <createTable tableName="roles">
-            <column name="role_id" type="uuid">
+            <column name="role_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="role_name" type="varchar(255)">
@@ -159,7 +159,7 @@
             </not>
         </preConditions>
         <createTable tableName="users">
-            <column name="u_id" type="uuid">
+            <column name="u_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="first_name" type="varchar(255)">
@@ -174,7 +174,7 @@
             <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_info_id" type="uuid">
+            <column name="user_info_id" type="binary(16)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -187,7 +187,7 @@
             </not>
         </preConditions>
         <createTable tableName="user_info">
-            <column name="ui_id" type="uuid">
+            <column name="ui_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="user_name" type="varchar(255)">
@@ -227,7 +227,7 @@
             </not>
         </preConditions>
         <createTable tableName="authorities">
-            <column name="auth_id" type="uuid">
+            <column name="auth_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="authority_name" type="varchar(255)">
@@ -243,7 +243,7 @@
             </not>
         </preConditions>
         <createTable tableName="orders">
-            <column name="o_id" type="uuid">
+            <column name="o_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="created_at" type="timestamp">
@@ -252,13 +252,13 @@
             <column name="status" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="promo_code_id" type="uuid">
+            <column name="promo_code_id" type="binary(16)">
                 <constraints foreignKeyName="orders_promo_code_id" references="promo_codes(pc_id)" nullable="true"/>
             </column>
-            <column name="user_id" type="uuid">
+            <column name="user_id" type="binary(16)">
                 <constraints foreignKeyName="orders_user_id" references="users(u_id)" nullable="false"/>
             </column>
-            <column name="shipper_id" type="uuid">
+            <column name="shipper_id" type="binary(16)">
                 <constraints foreignKeyName="orders_shipper_id" references="shippers(sh_id)" nullable="true"/>
             </column>
         </createTable>
@@ -271,7 +271,7 @@
             </not>
         </preConditions>
         <createTable tableName="products">
-            <column name="p_id" type="uuid">
+            <column name="p_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
@@ -289,10 +289,10 @@
             <column name="is_active" type="boolean">
                 <constraints nullable="false"/>
             </column>
-            <column name="category_id" type="uuid">
+            <column name="category_id" type="binary(16)">
                 <constraints foreignKeyName="products_category_id" references="categories(cat_id)" nullable="true"/>
             </column>
-            <column name="supplier_id" type="uuid">
+            <column name="supplier_id" type="binary(16)">
                 <constraints foreignKeyName="products_supplier_id" references="suppliers(su_id)" nullable="true"/>
             </column>
         </createTable>
@@ -305,17 +305,17 @@
             </not>
         </preConditions>
         <createTable tableName="orders_detail">
-            <column name="od_id" type="uuid">
+            <column name="od_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="quantity" type="integer">
                 <constraints nullable="false"/>
             </column>
-            <column name="order_id" type="uuid">
+            <column name="order_id" type="binary(16)">
                 <constraints foreignKeyName="order_details_order_id" references="orders(o_id)"
                              nullable="false"/>
             </column>
-            <column name="product_id" type="uuid">
+            <column name="product_id" type="binary(16)">
                 <constraints foreignKeyName="order_details_product_id" references="products(p_id)"
                              nullable="false"/>
             </column>
@@ -329,10 +329,10 @@
             </not>
         </preConditions>
         <createTable tableName="authorities_roles">
-            <column name="role_id" type="uuid">
+            <column name="role_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="auth_id" type="uuid">
+            <column name="auth_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
         </createTable>
@@ -345,25 +345,25 @@
 
     </changeSet>
 
-    <changeSet author="o.chilibiiskyi" id="create_roles_users_info_table">
-        <preConditions onFail="CONTINUE" onFailMessage="Table authorities_roles already exists">
+    <changeSet author="o.chilibiiskyi" id="create_users_info_roles_table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table users_info_roles_already exists">
             <not>
-                <tableExists tableName="roles_users_info"/>
+                <tableExists tableName="user_info_roles"/>
             </not>
         </preConditions>
-        <createTable tableName="roles_users_info">
-            <column name="role_id" type="uuid">
+        <createTable tableName="user_info_roles">
+            <column name="role_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="ui_id" type="uuid">
+            <column name="ui_id" type="binary(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="roles_users_info"
-                                 constraintName="roles_users_info_roles"
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_info_roles"
+                                 constraintName="roles_user_info"
                                  referencedColumnNames="role_id" referencedTableName="roles"/>
-        <addForeignKeyConstraint baseColumnNames="ui_id" baseTableName="roles_users_info"
-                                 constraintName="users_info_roles_users_info"
+        <addForeignKeyConstraint baseColumnNames="ui_id" baseTableName="user_info_roles"
+                                 constraintName="user_info_roles"
                                  referencedColumnNames="ui_id" referencedTableName="user_info"/>
 
     </changeSet>

@@ -1,6 +1,7 @@
 package com.example.onlineshop.entity;
 
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,6 +29,11 @@ public class Authority {
     private String authority;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "authorities_roles",
+            joinColumns = @JoinColumn(name = "auth_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Set<Role> roles;
 
     @Override

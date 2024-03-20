@@ -5,6 +5,7 @@ public enum City {
     HAMBURG("Hamburg"),
     MUNICH("Munich"),
     COLOGNE("Cologne"),
+    CHICAGO("Chicago"),
     FRANKFURT("Frankfurt"),
     STUTTGART("Stuttgart"),
     DUSSELDORF("Dusseldorf"),
@@ -19,6 +20,7 @@ public enum City {
     BOCHUM("Bochum"),
     WUPPERTAL("Wuppertal"),
     BIELEFELD("Bielefeld"),
+    HOUSTON("Houston"),
     BONN("Bonn"),
 //    MANNHEIM("Mannheim", com.example.onlineshop.entity.enums.Country.USA)
     ;

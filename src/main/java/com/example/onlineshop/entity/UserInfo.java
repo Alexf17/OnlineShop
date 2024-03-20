@@ -3,6 +3,7 @@ package com.example.onlineshop.entity;
 import com.example.onlineshop.entity.enums.City;
 import com.example.onlineshop.entity.enums.PostCode;
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -56,9 +57,11 @@ public class UserInfo {
     private Timestamp dateOfBirth;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //  @JoinTable(name = "users_roles",
-    //       joinColumns = @JoinColumn(name = "user_info_id"),
-    //        inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(
+            name = "user_info_roles",
+            joinColumns = @JoinColumn(name = "ui_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Set<Role> roles;
 
 

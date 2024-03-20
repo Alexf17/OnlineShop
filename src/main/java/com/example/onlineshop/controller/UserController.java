@@ -8,14 +8,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserServices userServices;
 
-    @GetMapping(name = "/showUser/{id}")
+    @GetMapping( "/showUser/{id}")
 public User showUserById(@PathVariable(name = "id") String id){
-return userServices.showUser(id);
+        return userServices.showUser(id);
 }
+
+
 }
