@@ -1,5 +1,7 @@
 package com.example.onlineshop.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -17,5 +19,13 @@ public class DataSourceConfig {
         dataSource.setUsername("root");
         dataSource.setPassword("7203312");
         return dataSource;
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        // Отключение FAIL_ON_EMPTY_BEANS
+        objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+        return objectMapper;
     }
 }

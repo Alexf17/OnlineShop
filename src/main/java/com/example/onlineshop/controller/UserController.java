@@ -19,6 +19,7 @@ public class UserController {
 
     @GetMapping( "/showUser/{id}")
 public User showUserById(@PathVariable(name = "id") String id){
+
         return userServices.showUser(id);
 }
 

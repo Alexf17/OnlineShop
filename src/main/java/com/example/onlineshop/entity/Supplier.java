@@ -37,7 +37,7 @@ public class Supplier {
     @Enumerated(EnumType.STRING)
     private City city;
 
-    @Column(name = "postCode")
+    @Column(name = "postcode")
     @Enumerated(EnumType.STRING)
     private PostCode postCode;
 

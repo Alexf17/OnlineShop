@@ -22,6 +22,10 @@ public enum City {
     BIELEFELD("Bielefeld"),
     HOUSTON("Houston"),
     BONN("Bonn"),
+    NEW_YORK("New York"),
+    LOS_ANGELES("Los Angeles"),
+    SAN_FRANCISCO("San Francisco"),
+    SEATTLE("Seattle"),
 //    MANNHEIM("Mannheim", com.example.onlineshop.entity.enums.Country.USA)
     ;
 

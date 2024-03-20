@@ -10,13 +10,13 @@ VALUES (UUID_TO_BIN(UUID()), 'SPRINGSALE', 5.0, '2024-03-14 12:00:00', '2024-03-
        (UUID_TO_BIN(UUID()), 'HOLIDAYSALE', 7.0, '2024-03-14 12:00:00', '2024-03-29 12:00:00', 20, 1),
        (UUID_TO_BIN(UUID()), 'NEWCUSTOMER', 20.0, '2024-03-14 12:00:00', '2024-03-29 12:00:00', 20, 0);
 
-INSERT INTO suppliers (su_id, name, address, city, postCode, country, phone)
-VALUES (UUID_TO_BIN(UUID()), 'Tech Solutions Inc.', '123 Main Street', 'New York', '10001', 'USA', '123-456-7890'),
-       (UUID_TO_BIN(UUID()), 'Gadgets World Ltd.', '456 Elm Avenue', 'Los Angeles', '90001', 'USA', '987-654-3210'),
+INSERT INTO suppliers (su_id, name, address, city, postcode, country, phone)
+VALUES (UUID_TO_BIN(UUID()), 'Tech Solutions Inc.', '123 Main Street', 'NEW_YORK', 'W7RTY3I', 'USA', '123-456-7890'),
+       (UUID_TO_BIN(UUID()), 'Gadgets World Ltd.', '456 Elm Avenue', 'LOS_ANGELES', 'HD87R', 'USA', '987-654-3210'),
        (UUID_TO_BIN(UUID()), 'Software Plus LLC', '789 Oak Road', 'CHICAGO', 'HD34U', 'USA', '555-123-4567'),
-       (UUID_TO_BIN(UUID()), 'Tech Innovations Ltd.', '101 Pine Street', 'San Francisco', '94101', 'USA',
+       (UUID_TO_BIN(UUID()), 'Tech Innovations Ltd.', '101 Pine Street', 'SAN_FRANCISCO', 'HD87R', 'USA',
         '777-888-9999'),
-       (UUID_TO_BIN(UUID()), 'Digital Solutions LLC', '202 Maple Avenue', 'Seattle', '98101', 'USA', '111-222-3333');
+       (UUID_TO_BIN(UUID()), 'Digital Solutions LLC', '202 Maple Avenue', 'SEATTLE', 'HD34U', 'USA', '111-222-3333');
 
 INSERT INTO shippers (sh_id, name, phone)
 VALUES (UUID_TO_BIN(UUID()), 'FastShip', '+1234567890'),

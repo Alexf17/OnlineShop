@@ -47,6 +47,7 @@ public enum PostCode {
     LOS_ANGELES("90001"),
     HD34U("60601"),
     HD87R("60601"),
+    W7RTY3I("60001"),
     HOUSTON("77001"),
     PHILADELPHIA("19101"),
     PHOENIX("85001"),
