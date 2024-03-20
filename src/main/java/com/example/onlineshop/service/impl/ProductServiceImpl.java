@@ -1,6 +1,7 @@
 package com.example.onlineshop.service.impl;
 
 import com.example.onlineshop.entity.Product;
+import com.example.onlineshop.exeption.ProductNotExistExp;
 import com.example.onlineshop.exeption.UserNotExistExp;
 import com.example.onlineshop.exeption.errorMessage.ErrorMessage;
 import com.example.onlineshop.repository.ProductRepository;
@@ -18,6 +19,6 @@ public class ProductServiceImpl implements ProductServices {
     @Override
     @Transactional
     public Product showProduct(String id) {
-        return productRepository.findById(UUID.fromString(id)).orElseThrow(()->new UserNotExistExp(ErrorMessage.USER_NOT_EXIST));
+        return productRepository.findById(UUID.fromString(id)).orElseThrow(()->new ProductNotExistExp(ErrorMessage.PRODUCT_NOT_EXIST));
     }
 }
