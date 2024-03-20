@@ -136,19 +136,19 @@ VALUES (UUID_TO_BIN('123e4567-e89b-12d3-a456-426655440000'), 'John', 'Doe', 'USA
         UUID_TO_BIN('523e4567-e89b-12d3-a456-426655448888'));
 
 INSERT INTO reviews (r_id, content, created_at, rate, user_id, product_id)
-VALUES (UUID_TO_BIN(UUID()), 'Great product, highly recommend it!', '2024-03-10 12:00:00', 5,
+VALUES (UUID_TO_BIN(UUID()), 'Great product, highly recommend it!', '2024-03-10 12:00:00','EXCELLENT',
         (SELECT u_id FROM users WHERE first_name = 'John'),
         (SELECT p_id FROM products WHERE name = 'XBOX SERIES X 1TB')),
-       (UUID_TO_BIN(UUID()), 'Excellent service, very satisfied with my purchase.', '2024-03-09 12:00:00', 4,
+       (UUID_TO_BIN(UUID()), 'Excellent service, very satisfied with my purchase.', '2024-03-09 12:00:00','VERY_GOOD',
         (SELECT u_id FROM users WHERE first_name = 'Jane'),
         (SELECT p_id FROM products WHERE name = 'Lenovo V15 Laptop')),
-       (UUID_TO_BIN(UUID()), 'Average product, could be better.', '2024-03-08 12:00:00', 3,
+       (UUID_TO_BIN(UUID()), 'Average product, could be better.', '2024-03-08 12:00:00','NOT_BAD',
         (SELECT u_id FROM users WHERE first_name = 'Michael'),
         (SELECT p_id FROM products WHERE name = 'OfficeSuite Home & Business 2023')),
-       (UUID_TO_BIN(UUID()), 'Not impressed, had issues with functionality.', '2024-03-07 12:00:00', 2,
+       (UUID_TO_BIN(UUID()), 'Not impressed, had issues with functionality.', '2024-03-07 12:00:00','GOOD',
         (SELECT u_id FROM users WHERE first_name = 'Emily'),
         (SELECT p_id FROM products WHERE name = 'GPS Navigation for Car')),
-       (UUID_TO_BIN(UUID()), 'Poor quality, disappointed with my purchase.', '2024-03-06 12:00:00', 1,
+       (UUID_TO_BIN(UUID()), 'Poor quality, disappointed with my purchase.', '2024-03-06 12:00:00','GOOD',
         (SELECT u_id FROM users WHERE first_name = 'David'),
         (SELECT p_id FROM products WHERE name = 'Lenovo IdeaPad 1 Student Laptop'));
 
@@ -172,6 +172,8 @@ VALUES (UUID_TO_BIN(UUID()), '2024-03-10 12:00:00', 'SUCCESSFUL', (SELECT pc_id 
 INSERT INTO orders_detail (od_id, quantity, order_id, product_id)
 VALUES (UUID_TO_BIN(UUID()), 2, (SELECT o_id FROM orders WHERE status = 'SUCCESSFUL'),
         (SELECT p_id FROM products WHERE name = 'XBOX SERIES X 1TB')),
+       (UUID_TO_BIN(UUID()), 1, (SELECT o_id FROM orders WHERE status = 'SUCCESSFUL'),
+        (SELECT p_id FROM products WHERE name = 'Lenovo V15 Laptop')),
        (UUID_TO_BIN(UUID()), 1, (SELECT o_id FROM orders WHERE status = 'PROCESSING'),
         (SELECT p_id FROM products WHERE name = 'Lenovo V15 Laptop')),
        (UUID_TO_BIN(UUID()), 3, (SELECT o_id FROM orders WHERE status = 'SHIPPED'),

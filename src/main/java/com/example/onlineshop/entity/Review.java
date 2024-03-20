@@ -2,6 +2,7 @@ package com.example.onlineshop.entity;
 
 import com.example.onlineshop.entity.enums.Rate;
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,6 +35,7 @@ public class Review {
     @Enumerated(EnumType.STRING)
     private Rate rate;
 
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "u_id")
     private User user;

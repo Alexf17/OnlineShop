@@ -124,7 +124,7 @@
             <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="rate" type="varchar(30)">
+            <column name="rate" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
             <column name="user_id" type="binary(16)">

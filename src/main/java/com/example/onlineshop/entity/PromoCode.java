@@ -7,6 +7,7 @@ import lombok.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
@@ -32,10 +33,12 @@ public class PromoCode {
     private double discount;
 
     @Column(name = "start_date")
-    private LocalDate startDate;
+    private Timestamp startDate;
+//    private LocalDate startDate;
 
     @Column(name = "exp_date")
-    private LocalDate expDate;
+    private Timestamp expDate;
+//    private LocalDate expDate;
 
     @Column(name = "max_number_of_uses")
     private int maxNumberOfUses;

@@ -41,6 +41,7 @@ public class Order {
     @JoinColumn(name = "promo_code_id", referencedColumnName = "pc_id")
     private PromoCode usedPromoCode;
 
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "u_id")
     private User user;

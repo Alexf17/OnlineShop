@@ -26,11 +26,11 @@ public class Authority {
     @Column(name = "auth_id")
     private UUID id;
 
-    @JsonBackReference
+    @JsonIgnore
     @Column(name = "authority_name")
     private String authority;
 
-@JsonBackReference
+@JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "authorities_roles",
