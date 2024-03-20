@@ -2,6 +2,7 @@ package com.example.onlineshop.entity;
 
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,9 +26,11 @@ public class Authority {
     @Column(name = "auth_id")
     private UUID id;
 
+    @JsonBackReference
     @Column(name = "authority_name")
     private String authority;
 
+@JsonBackReference
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "authorities_roles",

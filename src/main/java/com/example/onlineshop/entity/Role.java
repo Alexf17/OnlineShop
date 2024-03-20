@@ -2,6 +2,7 @@ package com.example.onlineshop.entity;
 
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,9 +28,11 @@ public class Role {
     @Column(name = "role_name")
     private String roleName;
 
+
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private Set<UserInfo> users;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private Set<Authority> authorities;
 

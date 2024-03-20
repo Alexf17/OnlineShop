@@ -172,13 +172,13 @@ VALUES (UUID_TO_BIN(UUID()), '2024-03-10 12:00:00', 'SUCCESSFUL', (SELECT pc_id 
 INSERT INTO orders_detail (od_id, quantity, order_id, product_id)
 VALUES (UUID_TO_BIN(UUID()), 2, (SELECT o_id FROM orders WHERE status = 'SUCCESSFUL'),
         (SELECT p_id FROM products WHERE name = 'XBOX SERIES X 1TB')),
-       (UUID_TO_BIN(UUID()), 1, (SELECT o_id FROM orders WHERE status = 'SUCCESSFUL'),
+       (UUID_TO_BIN(UUID()), 1, (SELECT o_id FROM orders WHERE status = 'PROCESSING'),
         (SELECT p_id FROM products WHERE name = 'Lenovo V15 Laptop')),
        (UUID_TO_BIN(UUID()), 3, (SELECT o_id FROM orders WHERE status = 'SHIPPED'),
         (SELECT p_id FROM products WHERE name = 'OfficeSuite Home & Business 2023')),
-       (UUID_TO_BIN(UUID()), 1, (SELECT o_id FROM orders WHERE status = 'SHIPPED'),
+       (UUID_TO_BIN(UUID()), 1, (SELECT o_id FROM orders WHERE status = 'UNSUCCESSFUL'),
         (SELECT p_id FROM products WHERE name = 'GPS Navigation for Car')),
-       (UUID_TO_BIN(UUID()), 2, (SELECT o_id FROM orders WHERE status = 'SHIPPED'),
+       (UUID_TO_BIN(UUID()), 2, (SELECT o_id FROM orders WHERE status = 'CANCELED'),
         (SELECT p_id FROM products WHERE name = 'Lenovo IdeaPad 1 Student Laptop'));
 
 INSERT INTO authorities_roles (role_id, auth_id)
