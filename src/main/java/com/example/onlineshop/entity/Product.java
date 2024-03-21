@@ -44,7 +44,6 @@ public class Product {
     @Column(name = "is_active")
     private boolean isActive;
 
-    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "cat_id")
     private Category category;
@@ -57,7 +56,6 @@ public class Product {
     @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<OrderDetail> orderDetails;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Review> productReviews;
 

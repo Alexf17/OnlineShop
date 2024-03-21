@@ -42,6 +42,7 @@ public class User {
     @JoinColumn(name = "user_info_id", referencedColumnName = "ui_id")
     private UserInfo userInfo;
 
+
     @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Order> orders;
 

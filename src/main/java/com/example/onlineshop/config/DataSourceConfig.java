@@ -24,7 +24,6 @@ public class DataSourceConfig {
     @Bean
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
-        // Отключение FAIL_ON_EMPTY_BEANS
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         return objectMapper;
     }

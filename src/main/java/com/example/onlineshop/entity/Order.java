@@ -42,7 +42,7 @@ public class Order {
     private PromoCode usedPromoCode;
 
     @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "u_id")
     private User user;
 
@@ -50,7 +50,6 @@ public class Order {
     @JoinColumn(name = "shipper_id", referencedColumnName = "sh_id")
     private Shipper shipper;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "order", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<OrderDetail> orderDetails;
 

@@ -2,6 +2,7 @@ package com.example.onlineshop.entity;
 
 
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,9 +28,11 @@ public class OrderDetail {
     @Column(name = "quantity")
     private int quantity;
 
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", referencedColumnName = "o_id")
     private Order order;
+
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "p_id")
