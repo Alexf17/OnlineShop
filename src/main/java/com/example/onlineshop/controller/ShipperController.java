@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/shipper")
 public class ShipperController {
     private final ShipperServices shipperServices;
-@GetMapping("/showShipper/{name}")
+
+    @GetMapping("/showShipper/{name}")
     public Shipper showShipperByName(@PathVariable("name") String name) {
-    return shipperServices.showShipper(name);
-}
+        return shipperServices.showShipper(name);
+    }
 }

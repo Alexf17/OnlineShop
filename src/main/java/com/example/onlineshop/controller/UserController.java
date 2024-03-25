@@ -17,11 +17,11 @@ public class UserController {
 
     private final UserServices userServices;
 
-    @GetMapping( "/showUser/{id}")
-public User showUserById(@PathVariable(name = "id") String id){
+    @GetMapping("/showUser/{id}")
+    public User showUserById(@PathVariable(name = "id") String id) {
 
         return userServices.showUser(id);
-}
+    }
 
 
 }

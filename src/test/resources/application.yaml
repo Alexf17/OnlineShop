@@ -1,0 +1,32 @@
+spring:
+  main:
+    banner-mode: off
+  liquibase:
+    enabled: false
+
+  datasource:
+    url: jdbc:h2:file:./testDB;AUTO_SERVER=TRUE
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+
+  sql:
+    init:
+      mode: never
+
+
+  h2:
+    console:
+      enabled: true
+
+
+#      schema-locations: create.sql
+#      data-locations: insert_test_data_changelog.sql
+#
+#      schema-locations: create-tables-changelog.xml
+#      data-locations: insert_test_data_changelog.sql

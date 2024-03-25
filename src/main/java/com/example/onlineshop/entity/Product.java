@@ -44,19 +44,19 @@ public class Product {
     @Column(name = "is_active")
     private boolean isActive;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", referencedColumnName = "cat_id")
     private Category category;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "supplier_id", referencedColumnName = "su_id")
+    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @JoinColumn( name = "supplier_id", referencedColumnName = "su_id")
     private Supplier supplier;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<OrderDetail> orderDetails;
 
-    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL,    fetch = FetchType.LAZY)
     private Set<Review> productReviews;
 
     @Override

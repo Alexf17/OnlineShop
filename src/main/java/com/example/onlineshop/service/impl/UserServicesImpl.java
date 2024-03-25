@@ -15,6 +15,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserServicesImpl implements UserServices {
     private final UserRepository userRepository;
+
     @Override
     @Transactional
     public User showUser(String id) {
@@ -27,7 +28,7 @@ public class UserServicesImpl implements UserServices {
 //        }
         return userRepository
                 .findById(UUID.fromString(id))
-                .orElseThrow(()->new UserNotExistExp(ErrorMessage.USER_NOT_EXIST));
+                .orElseThrow(() -> new UserNotExistExp(ErrorMessage.USER_NOT_EXIST));
 
     }
 }

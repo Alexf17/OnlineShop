@@ -32,9 +32,16 @@ public class ProductServiceImpl implements ProductServices {
 
         return productRepository.findAll();
     }
+
     @Override
     @Transactional
     public List<String> showAllProductNames() {
         return productRepository.findAll().stream().map(Product::getName).toList();
+    }
+
+    @Override
+    @Transactional
+    public void deleteProduct(String id) {
+        productRepository.deleteById(UUID.fromString(id));
     }
 }

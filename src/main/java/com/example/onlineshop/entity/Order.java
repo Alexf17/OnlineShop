@@ -37,7 +37,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "promo_code_id", referencedColumnName = "pc_id")
     private PromoCode usedPromoCode;
 
@@ -46,11 +46,12 @@ public class Order {
     @JoinColumn(name = "user_id", referencedColumnName = "u_id")
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "shipper_id", referencedColumnName = "sh_id")
     private Shipper shipper;
 
-    @OneToMany(mappedBy = "order", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "order", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<OrderDetail> orderDetails;
 
     @Override

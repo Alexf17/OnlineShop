@@ -11,6 +11,7 @@ import java.util.UUID;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, UUID> {
     @Nonnull
-    @Override
-    Optional<Product>findById(@Nonnull UUID id);
+    Optional<Product> findById(@Nonnull UUID id);
+
+    void deleteById(@Nonnull UUID id);
 }
