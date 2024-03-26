@@ -3,6 +3,7 @@ package com.example.onlineshop.entity;
 import com.example.onlineshop.entity.enums.City;
 import com.example.onlineshop.entity.enums.PostCode;
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;

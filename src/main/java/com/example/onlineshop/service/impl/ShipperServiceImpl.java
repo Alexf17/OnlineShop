@@ -21,4 +21,9 @@ public class ShipperServiceImpl implements ShipperServices {
     public Shipper showShipper(String name) {
         return shipperRepository.findByName(name).orElseThrow(() -> new ProductNotExistExp(ErrorMessage.PRODUCT_NOT_EXIST));
     }
+
+    @Transactional
+    public Shipper addShipper(Shipper shipper) {
+        return shipperRepository.saveAndFlush(shipper);
+    }
 }

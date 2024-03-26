@@ -1,6 +1,7 @@
 package com.example.onlineshop.controller;
 
 import com.example.onlineshop.entity.User;
+import com.example.onlineshop.entity.enums.Country;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Sql("/drop.sql")
 @Sql("/create-tables-changelog.sql")
 @Sql("/insert_test_data_changelog.sql")
 class UserControllerTest {
@@ -34,14 +36,19 @@ class UserControllerTest {
         User user1 = new User();
         user1.setId(UUID.fromString(
                 "39336334-6165-6535-2d30-3739652d3438"));
+        user1.setFirstName("John");
+        user1.setSecondName("Doe");
+        user1.setCountry(Country.USA);
 
         MvcResult userResult = mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/user/showUser/39336334-6165-6535-2d30-3739652d3438")).andExpect(status().isOk()).andReturn();
+
         String userResultJSON = userResult.getResponse().getContentAsString();
+
         User authorResult = objectMapper.readValue(userResultJSON, User.class);
 
-        Assertions.assertEquals(user1.getId(), authorResult.getId());
+        Assertions.assertEquals(user1, authorResult);
 
     }
 

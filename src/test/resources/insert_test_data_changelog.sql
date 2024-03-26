@@ -8,16 +8,16 @@ VALUES (UUID(), 'SPRINGSALE', 5.0, '2024-03-14 12:00:00', '2024-03-29 12:00:00',
        (UUID(), 'NEWCUSTOMER', 20.0, '2024-03-14 12:00:00', '2024-03-29 12:00:00', 20, 0);
 
 INSERT INTO suppliers (su_id, name, address, city, postcode, country, phone)
-VALUES (UUID(), 'Tech Solutions Inc.', '123 Main Street', 'NEW_YORK', 'W7RTY3I', 'USA', '123-456-7890'),
-       (UUID(), 'Gadgets World Ltd.', '456 Elm Avenue', 'LOS_ANGELES', 'HD87R', 'USA', '987-654-3210'),
+VALUES (CAST('b08afaae-d06f-45e5-9d76-6e4dfe2f7265'as binary(16)), 'Tech Solutions Inc.', '123 Main Street', 'NEW_YORK', 'W7RTY3I', 'USA', '123-456-7890'),
+       (CAST('5e441d25-7d98-4f7e-8e34-8a4ab7b77979'as binary(16)), 'Gadgets World Ltd.', '456 Elm Avenue', 'LOS_ANGELES', 'HD87R', 'USA', '987-654-3210'),
        (UUID(), 'Software Plus LLC', '789 Oak Road', 'CHICAGO', 'HD34U', 'USA', '555-123-4567'),
        (UUID(), 'Tech Innovations Ltd.', '101 Pine Street', 'SAN_FRANCISCO', 'HD87R', 'USA',
         '777-888-9999'),
        (UUID(), 'Digital Solutions LLC', '202 Maple Avenue', 'SEATTLE', 'HD34U', 'USA', '111-222-3333');
 
 INSERT INTO shippers (sh_id, name, phone)
-VALUES (UUID(), 'FastShip', '+1234567890'),
-       (UUID(), 'QuickDeliver', '+0987654321'),
+VALUES (CAST('d84e7852-c31b-41f4-9e86-40d4ebc90b22'as binary(16)), 'FastShip', '+1234567890'),
+       (CAST('fd076bb6-8f54-4bb4-80db-36b54c97fb3a'as binary(16)), 'QuickDeliver', '+0987654321'),
        (UUID(), 'SpeedyCourier', '+9876543210'),
        (UUID(), 'SwiftTransit', '+0123456789'),
        (UUID(), 'RapidLogistics', '+9876543210');
@@ -57,12 +57,12 @@ FROM categories
 WHERE name = 'electronics';
 
 INSERT INTO products (p_id, name, description, quantity, price, is_active, category_id, supplier_id)
-VALUES (UUID(), 'XBOX SERIES X 1TB',
+VALUES (CAST('2d11ab81-ff27-4874-8771-85c7c29e76b8'as binary(16)), 'XBOX SERIES X 1TB',
         'Kickstart your ultimate adventure with Xbox Series X and the Forza
 Horizon 5 Premium Edition. ', 12, 300.5, true,
         (SELECT cat_id FROM categories WHERE name = 'consoles'),
         (SELECT su_id FROM suppliers WHERE name = 'Tech Solutions Inc.')),
-       (UUID(), 'Lenovo V15 Laptop',
+       (CAST('c11b10f9-1926-4a2e-867b-54258c858d63'as binary(16)), 'Lenovo V15 Laptop',
         '16GB high-bandwidth RAM to smoothly run multiple applications and
 browser tabs all at once; 512GB PCIe NVMe M.2 Solid State Drive allows to fast bootup and data transfer',
         10, 370.5, true,

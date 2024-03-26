@@ -3,10 +3,7 @@ package com.example.onlineshop.controller;
 import com.example.onlineshop.entity.Shipper;
 import com.example.onlineshop.service.interf.ShipperServices;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,5 +14,10 @@ public class ShipperController {
     @GetMapping("/showShipper/{name}")
     public Shipper showShipperByName(@PathVariable("name") String name) {
         return shipperServices.showShipper(name);
+    }
+
+    @PostMapping("/add")
+    public Shipper addNewShipper(@RequestBody Shipper shipper) {
+        return shipperServices.addShipper(shipper);
     }
 }

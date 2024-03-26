@@ -4,6 +4,7 @@ import com.example.onlineshop.entity.enums.Country;
 import com.example.onlineshop.generator.UuidTimeSequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -36,18 +37,19 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Country country;
 
+    @JsonIgnore
     @Column(name = "created_at")
     private Timestamp createdAt;
-    
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_info_id", referencedColumnName = "ui_id")
     private UserInfo userInfo;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Order> orders;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Review> reviews;
 

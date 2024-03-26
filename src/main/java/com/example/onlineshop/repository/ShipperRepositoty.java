@@ -12,4 +12,7 @@ public interface ShipperRepositoty extends JpaRepository<Shipper, String> {
 
     @Nonnull
     Optional<Shipper> findByName(@Nonnull String name);
+
+    @Nonnull
+    Shipper saveAndFlush(@Nonnull Shipper shipper);
 }
