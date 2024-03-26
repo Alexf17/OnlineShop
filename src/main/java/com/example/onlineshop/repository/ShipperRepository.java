@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ShipperRepositoty extends JpaRepository<Shipper, String> {
+public interface ShipperRepository extends JpaRepository<Shipper, String> {
 
     @Nonnull
     Optional<Shipper> findByName(@Nonnull String name);
