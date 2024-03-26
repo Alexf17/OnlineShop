@@ -11,6 +11,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.hamcrest.Matchers.is;
 
@@ -47,6 +48,7 @@ class ProductControllerTest {
                 .perform(MockMvcRequestBuilders
                         .get("/products/showProduct/32643131-6162-3831-2d66-6632372d3438")).andExpect(status().isOk()).andReturn();
         String productResultJSON = productResult.getResponse().getContentAsString();
+
 
         String productJSON = productResult.getResponse().getContentAsString();
         Product getResult = objectMapper.readValue(productResultJSON, Product.class);
