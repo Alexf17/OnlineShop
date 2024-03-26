@@ -49,10 +49,18 @@ class ProductControllerTest {
                         .get("/products/showProduct/32643131-6162-3831-2d66-6632372d3438")).andExpect(status().isOk()).andReturn();
         String productResultJSON = productResult.getResponse().getContentAsString();
 
-
         String productJSON = productResult.getResponse().getContentAsString();
         Product getResult = objectMapper.readValue(productResultJSON, Product.class);
 
         Assertions.assertEquals(product, getResult);
+    }
+
+    @Test
+    void deleteProductById() throws Exception{
+        MvcResult productDeleteResult = mockMvc
+                .perform(MockMvcRequestBuilders
+                        .delete("/products/deleteProduct/32643131-6162-3831-2d66-6632372d3438")).andExpect(status().isOk()).andReturn();
+        String productDeleteResultJSON = productDeleteResult.getResponse().getContentAsString();
+
     }
 }
