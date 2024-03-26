@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -24,6 +25,7 @@ public class ShipperServiceImpl implements ShipperServices {
 
     @Transactional
     public Shipper addShipper(Shipper shipper) {
+//        Optional<Shipper> optionalShipper = shipperRepository.findByName(shipper.getName());
         return shipperRepository.saveAndFlush(shipper);
     }
 }

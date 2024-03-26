@@ -7,11 +7,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.hamcrest.Matchers.is;
 
@@ -56,11 +59,13 @@ class ProductControllerTest {
     }
 
     @Test
-    void deleteProductById() throws Exception{
-        MvcResult productDeleteResult = mockMvc
+    void deleteProductById() throws Exception {
+        MockHttpServletResponse productDeleteResult = mockMvc
                 .perform(MockMvcRequestBuilders
-                        .delete("/products/deleteProduct/32643131-6162-3831-2d66-6632372d3438")).andExpect(status().isOk()).andReturn();
-        String productDeleteResultJSON = productDeleteResult.getResponse().getContentAsString();
+                        .delete("/products/deleteProduct/32643131-6162-3831-2d66-6632372d3438"))
+                .andExpect(status().isOk()).andReturn().getResponse();
+
+        assertEquals(productDeleteResult.getStatus(), HttpStatus.OK.value());
 
     }
 }
