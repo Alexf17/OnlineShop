@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.hamcrest.Matchers.is;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -36,9 +37,11 @@ class ProductControllerTest {
     void showProductById() throws Exception {
         Product product = new Product();
         product.setName("XBOX SERIES X 1TB");
-        product.setDescription("Kickstart your ultimate adventure with Xbox Series X and the Forza\n" +
-                "Horizon 5 Premium Edition.");
+        product.setDescription("Kickstart your ultimate adventure with Xbox Series X and the Forza\nHorizon 5 Premium Edition. ");
         product.setId(UUID.fromString("32643131-6162-3831-2d66-6632372d3438"));
+        product.setQuantity(12);
+        product.setPrice(BigDecimal.valueOf(300.500));
+        product.setActive(true);
 
         MvcResult productResult = mockMvc
                 .perform(MockMvcRequestBuilders
