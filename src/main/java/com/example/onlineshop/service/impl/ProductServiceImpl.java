@@ -1,6 +1,7 @@
 package com.example.onlineshop.service.impl;
 
 import com.example.onlineshop.entity.Product;
+import com.example.onlineshop.entity.Shipper;
 import com.example.onlineshop.exeption.ProductNotExistExp;
 import com.example.onlineshop.exeption.UserNotExistExp;
 import com.example.onlineshop.exeption.errorMessage.ErrorMessage;
@@ -43,5 +44,10 @@ public class ProductServiceImpl implements ProductServices {
     @Transactional
     public void deleteProduct(String id) {
         productRepository.deleteById(UUID.fromString(id));
+    }
+
+    @Transactional
+    public Product addProduct(Product product) {
+        return productRepository.saveAndFlush(product);
     }
 }

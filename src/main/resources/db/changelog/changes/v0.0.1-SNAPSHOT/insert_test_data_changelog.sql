@@ -21,7 +21,7 @@ VALUES (UUID_TO_BIN(UUID()), 'Tech Solutions Inc.', '123 Main Street', 'NEW_YORK
 INSERT INTO shippers (sh_id, name, phone)
 VALUES (UUID_TO_BIN(UUID()), 'FastShip', '+1234567890'),
        (UUID_TO_BIN(UUID()), 'QuickDeliver', '+0987654321'),
-       (UUID_TO_BIN(UUID()), 'SpeedyCourier', '+9876543210'),
+       (UUID_TO_BIN(UUID()), 'SpeedyCourier', '+9876543213'),
        (UUID_TO_BIN(UUID()), 'SwiftTransit', '+0123456789'),
        (UUID_TO_BIN(UUID()), 'RapidLogistics', '+9876543210');
 

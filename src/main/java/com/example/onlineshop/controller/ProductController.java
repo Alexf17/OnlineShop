@@ -1,6 +1,7 @@
 package com.example.onlineshop.controller;
 
 import com.example.onlineshop.entity.Product;
+import com.example.onlineshop.entity.Shipper;
 import com.example.onlineshop.service.interf.ProductServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -38,4 +39,8 @@ public class ProductController {
         productService.deleteProduct(id);
     }
 
+    @PostMapping("/add")
+    public Product addNewShipper(@RequestBody Product product) {
+        return productService.addProduct(product);
+    }
 }

@@ -6,4 +6,6 @@ public interface ShipperServices {
     Shipper showShipper(String name);
 
     Shipper addShipper(Shipper shipper);
+
+    Shipper changeShipper(Shipper shipper,String id);
 }

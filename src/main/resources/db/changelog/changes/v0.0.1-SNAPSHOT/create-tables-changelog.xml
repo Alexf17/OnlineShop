@@ -16,7 +16,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="discount" type="double">
                 <constraints nullable="false"/>
@@ -103,7 +103,7 @@
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="phone" type="varchar(30)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
         </createTable>
     </changeSet>
@@ -119,7 +119,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="content" type="varchar(60)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false" />
             </column>
             <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
@@ -206,13 +206,13 @@
                 <constraints nullable="false"/>
             </column>
             <column name="card_number" type="varchar(255)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="phone" type="varchar(255)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="email" type="varchar(255)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="date_of_birth" type="timestamp">
                 <constraints nullable="false"/>
@@ -275,7 +275,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="description" type="text">
                 <constraints nullable="true"/>

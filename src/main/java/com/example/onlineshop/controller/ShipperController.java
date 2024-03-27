@@ -21,4 +21,9 @@ public class ShipperController {
     public Shipper addNewShipper(@RequestBody Shipper shipper) {
         return shipperServices.addShipper(shipper);
     }
+
+    @PutMapping("/put/{id}")
+    public Shipper changeShipper(@RequestBody Shipper shipper, @PathVariable("id") String id) {
+        return shipperServices.changeShipper(shipper,id);
+    }
 }

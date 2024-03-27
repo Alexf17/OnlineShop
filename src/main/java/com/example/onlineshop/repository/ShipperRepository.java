@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public interface ShipperRepository extends JpaRepository<Shipper, String> {
@@ -15,4 +16,6 @@ public interface ShipperRepository extends JpaRepository<Shipper, String> {
 
     @Nonnull
     Shipper saveAndFlush(@Nonnull Shipper shipper);
+
+    Optional<Shipper> findById(UUID uuid);
 }
