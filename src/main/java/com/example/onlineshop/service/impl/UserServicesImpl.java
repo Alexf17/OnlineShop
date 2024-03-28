@@ -6,9 +6,12 @@ import com.example.onlineshop.exeption.UserNotExistExp;
 import com.example.onlineshop.repository.UserRepository;
 import com.example.onlineshop.service.interf.UserServices;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -18,17 +21,20 @@ public class UserServicesImpl implements UserServices {
 
     @Override
     @Transactional
-    public User showUser(String id) {
-//        Optional<User> optionalUser = userRepository.findById(id);
-//        if(optionalUser.isPresent()){
-//           return optionalUser.get()
-//            ;
+//    public Object  showUser(String id) {
+//        Optional<User> optionalUser = userRepository.findById(UUID.fromString(id));
+//        if (optionalUser.isPresent()) {
+//            return ResponseEntity.ok(optionalUser.get());
 //        } else {
-//             throw new UserNotExistExp(ErrorMessage.USER_NOT_EXIST);
+//
+//            ResponseEntity<?> responseEntity = ResponseEntity.status(HttpStatus.NO_CONTENT).body();
+//
+//            throw new UserNotExistExp(ErrorMessage.USER_NOT_EXIST, responseEntity);
 //        }
+//    }
+    public User showUser(String id) {
         return userRepository
                 .findById(UUID.fromString(id))
                 .orElseThrow(() -> new UserNotExistExp(ErrorMessage.USER_NOT_EXIST));
-
     }
 }
