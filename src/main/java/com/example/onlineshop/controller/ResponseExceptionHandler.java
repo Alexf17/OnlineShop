@@ -1,6 +1,6 @@
 package com.example.onlineshop.controller;
 
-import com.example.onlineshop.entity.ErrorExtension;
+
 import com.example.onlineshop.exeption.UserNotExistExp;
 import com.example.onlineshop.exeption.errorMessage.ErrorMessage;
 import org.springframework.http.HttpStatus;
